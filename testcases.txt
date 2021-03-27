@@ -1,0 +1,102 @@
+==============
+GET
+==============
+www.gov.cn
+1: GET http://detectportal.firefox.com/success.txt HTTP/1.1 from 172.18.0.1 @ Mon Mar  8 16:51:12 2021
+1: not in cache
+1: Requesting GET http://detectportal.firefox.com/success.txt HTTP/1.1 from detectportal.firefox.com
+1: Received HTTP/1.1 200 OK from detectportal.firefox.com
+1: cached, but requires re-validation
+1: Responding HTTP/1.1 200 OK
+
+==============
+GET chunked
+==============
+http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx
+1: GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:56:40 2021
+
+
+==============
+POST
+==============
+http://httpbin.org/forms/post
+1: GET http://httpbin.org/forms/post HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:53:51 2021
+2: POST http://httpbin.org/post HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:54:14 2021
+
+=============
+CONNECT
+=============
+www.baidu.com
+133: CONNECT www.baidu.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+133: Responding "HTTP/1.1 200 OK"
+134: CONNECT dss0.bdstatic.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+135: CONNECT www.baidu.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+136: CONNECT www.baidu.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+137: CONNECT hectorstatic.baidu.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+138: CONNECT www.baidu.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+133: Connection closed
+139: CONNECT dss0.bdstatic.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 10:58:49 2021
+135: Responding "HTTP/1.1 200 OK"
+135: Connection closed
+136: Responding "HTTP/1.1 200 OK"
+136: Connection closed
+
+==============
+Watch video
+==============
+www.iqiyi.com
+1: CONNECT msg.qy.net:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:41 2021
+1: Responding "HTTP/1.1 200 OK"
+2: POST http://ocsp.globalsign.com/gsrsaovsslca2018 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:41 2021
+3: CONNECT www.iqiyi.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:43 2021
+3: Responding "HTTP/1.1 200 OK"
+4: CONNECT cache.video.iqiyi.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:44 2021
+4: Responding "HTTP/1.1 200 OK"
+4: Connection closed
+
+www.bilibili.com
+57: CONNECT www.bilibili.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:51 2021
+58: CONNECT data.bilibili.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:51 2021
+57: Responding "HTTP/1.1 200 OK"
+58: Responding "HTTP/1.1 200 OK"
+59: CONNECT cache.video.iqiyi.com:443 HTTP/1.1 from 0.0.0.0 @ Mon Mar  8 11:02:52 2021
+59: Responding "HTTP/1.1 200 OK"
+
+==============
+cache
+==============
+in cache, valid
+150: GET http://www.gov.cn/govweb/xhtml/2016gov/images/public/logo.jpg HTTP/1.1 from 0.0.0.0 @ Tue Mar  9 08:10:03 2021
+150: in cache, valid
+150: Responding HTTP/1.1 200 OK
+
+in cache, revalidate (If-Modified-Since)(log wrire whole request only for test)
+273: GET http://js.player.cntv.cn/creator/swfobject.js HTTP/1.1 from 0.0.0.0 @ Tue Mar  9 10:19:16 2021
+273: in cache, requires validation
+273: revalidate request GET http://js.player.cntv.cn/creator/swfobject.js HTTP/1.1
+Host: js.player.cntv.cn
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:86.0) Gecko/20100101 Firefox/86.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://www.gov.cn/xinwen/2021-03/08/content_5591599.htm
+Cache-Control: max-age=0
+If-Modified-Since: Wed, 10 Jun 2020 01:39:10 GMT
+273: Responding HTTP/1.1 200 OK
+
+in cache, revalidate (If-None-Match)
+277: GET http://js.player.cntv.cn/creator/vodplayer.js HTTP/1.1 from 0.0.0.0 @ Tue Mar  9 10:19:16 2021
+277: in cache, requires validation
+277: revalidate request GET http://js.player.cntv.cn/creator/vodplayer.js HTTP/1.1
+Host: js.player.cntv.cn
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:86.0) Gecko/20100101 Firefox/86.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://www.gov.cn/xinwen/2021-03/08/content_5591599.htm
+Cache-Control: max-age=0
+If-None-Match: "66c5c63f5000eb504139aafc7ee6cff8"
+277: cached, expires at Tue, 09 Mar 2021 10:26:54 GMT
+277: Responding HTTP/1.1 200 OK

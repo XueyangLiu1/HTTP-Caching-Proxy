@@ -1,0 +1,22 @@
+Danger log
+
+1.Our proxy abort once with uncaught exception : stoi invalid argument
+  After check the code, we found out it appeared when we tried to get content length of one response, however,
+  some response may not have content-length field, therefore, we passed en empty string into stoi, and invalia argument exception thrown.
+  We added a check when try to get content-length from one response, if it is empty, we return -1 for length.
+
+2.We checked request and response format.
+  When request is invalid, we return "HTTP/1.1 400 Bad Request".
+  When response is invalid, we return "HTTP/1.1 502 Bad Gateway".
+
+3.Our proxy blocked once when recving response. By checking the content of the response, we found out it is chunked.
+  We changed our receive method to continue receiving until we meet end signal from the server and it worked.
+  And we also checked received content length for unchunked response.
+  
+4.Exception guarantee
+  4.1 Our cache was built based on linked list. And we followed rule of 3 by adding copy constructor, assignment operator and destructor.
+      Our assignment operator used temp-swap strategy and make sure it has strong guarantee.
+      I tested this part seperately. It had no error in valgrind and was memory free.
+  4.2 While using socket to communicate with the proxy and remote server, many steps in this process could go wrong.
+      We checked the return value of those sokect-related functions and throw corresponding exceptions,
+      letting the upper level function catch them and write suitable records into the log, without aborting the proxy.
